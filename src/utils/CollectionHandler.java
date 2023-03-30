@@ -5,6 +5,8 @@ import data.SpaceMarine;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.NavigableSet;
+import java.util.TreeSet;
 
 public class CollectionHandler {
     HashSet<SpaceMarine> collection;
@@ -44,15 +46,18 @@ public class CollectionHandler {
     }
 
     public void loadCollection(){
-        FileManager fileManager = new FileManager();
-        SpaceMarine[] spaceMarines;
+        String name = new String("Имя_Файла");
+
+        FileManager fileManager = new FileManager(name);
+        collection = fileManager.readFromFile();
+     /* SpaceMarine[] spaceMarines;
         try {
-            spaceMarines = fileManager.readFromFile();
+            marinesCollection = fileManager.readFromFile();
             for (SpaceMarine spaceMarine : spaceMarines){
                 addSpaceMarine(spaceMarine);
             }
         } catch (IOException e) {
             IOHandler.println("Ошибка при чтении файла"+e.getMessage());
-        }
+        }*/
     }
 }
