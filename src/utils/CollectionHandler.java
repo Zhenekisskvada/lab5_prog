@@ -11,10 +11,17 @@ import java.util.TreeSet;
 public class CollectionHandler {
     HashSet<SpaceMarine> collection;
     private LocalDateTime initDateTime;
+    private FileManager fileManager;
 
     public CollectionHandler() {
         collection = new HashSet<>();
         initDateTime = LocalDateTime.now();
+    }
+
+    public CollectionHandler(FileManager fileManager) {
+        this.fileManager = fileManager;
+
+        loadCollection();
     }
 
     public Boolean addSpaceMarine(SpaceMarine spaceMarine) {
