@@ -5,66 +5,88 @@ import data.SpaceMarine;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.NavigableSet;
 import java.util.TreeSet;
 
 public class CollectionHandler {
-    HashSet<SpaceMarine> collection;
+    HashSet<SpaceMarine> marinesCollection =  new HashSet<>();
     private LocalDateTime initDateTime;
+    private LocalDateTime saveDateTime;
     private FileManager fileManager;
 
+
     public CollectionHandler() {
-        collection = new HashSet<>();
         initDateTime = LocalDateTime.now();
     }
 
     public CollectionHandler(FileManager fileManager) {
+        this.initDateTime = null;
+        this.saveDateTime = null;
         this.fileManager = fileManager;
 
         loadCollection();
     }
 
     public Boolean addSpaceMarine(SpaceMarine spaceMarine) {
-        collection.add(spaceMarine);
+        marinesCollection.add(spaceMarine);
         return true;
+    }
+
+    public String collectionType() {
+        return marinesCollection.getClass().getName();
+    }
+    public int collectionSize() {
+        return marinesCollection.size();
     }
 
     public Boolean removeSpaceMarine(SpaceMarine spaceMarine) {
 
-        collection.remove(spaceMarine);
+        marinesCollection.remove(spaceMarine);
         return true;
     }
 
     public LocalDateTime getInitDateTime(){return initDateTime;}
-    public HashSet<SpaceMarine> getCollection(){return collection;}
+    public LocalDateTime getLastSaveTime() {
+        return saveDateTime;
+    }
+    public HashSet<SpaceMarine> getCollection(){return marinesCollection;}
 
     public void clear(){
-        collection.clear();
+        marinesCollection.clear();
     }
 
     public int generateNextId(){
         int nextId = 1;
-        for(SpaceMarine spaceMarine : collection){
+        for(SpaceMarine spaceMarine : marinesCollection){
             if (spaceMarine.getId() >= nextId){
                 nextId = spaceMarine.getId();
             }
         }
         return nextId+1;
     }
+    public void saveCollection() {
+        fileManager.writeFile(marinesCollection);
+        saveDateTime = LocalDateTime.now();
+    }
 
     public void loadCollection(){
         String name = new String("Имя_Файла");
 
         FileManager fileManager = new FileManager(name);
-        collection = fileManager.readFromFile();
-     /* SpaceMarine[] spaceMarines;
-        try {
-            marinesCollection = fileManager.readFromFile();
-            for (SpaceMarine spaceMarine : spaceMarines){
-                addSpaceMarine(spaceMarine);
-            }
-        } catch (IOException e) {
-            IOHandler.println("Ошибка при чтении файла"+e.getMessage());
-        }*/
+        marinesCollection = fileManager.readFromFile();
+        initDateTime = LocalDateTime.now();
+    }
+    @Override
+    public String toString() {
+        if (marinesCollection.isEmpty()) return "Коллекция пуста!";
+
+        String info = "";
+        Iterator iterator = marinesCollection.iterator();
+        while (iterator.hasNext()){
+            info += iterator.next();
+        }
+
+        return info;
     }
 }
