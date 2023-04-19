@@ -1,9 +1,6 @@
 package run;
 
-import commands.AddCommand;
-import commands.HelpCommand;
-import commands.InfoCommand;
-import commands.ShowCommand;
+import commands.*;
 import utils.*;
 
 import java.util.Scanner;
