@@ -1,13 +1,9 @@
 package utils;
 
 import data.SpaceMarine;
-
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.NavigableSet;
-import java.util.TreeSet;
 
 public class CollectionHandler {
     HashSet<SpaceMarine> marinesCollection =  new HashSet<>();
@@ -27,10 +23,8 @@ public class CollectionHandler {
 
         loadCollection();
     }
-
-    public Boolean addSpaceMarine(SpaceMarine spaceMarine) {
-        marinesCollection.add(spaceMarine);
-        return true;
+    public void addToCollection(SpaceMarine marine) {
+        marinesCollection.add(marine);
     }
 
     public String collectionType() {
@@ -40,10 +34,14 @@ public class CollectionHandler {
         return marinesCollection.size();
     }
 
-    public Boolean removeSpaceMarine(SpaceMarine spaceMarine) {
-
-        marinesCollection.remove(spaceMarine);
-        return true;
+    public void removeFromCollection(SpaceMarine marine) {
+        marinesCollection.remove(marine);
+    }
+    public SpaceMarine getById(Long id) {
+        for (SpaceMarine marine : marinesCollection) {
+            if (marine.getId().equals(id)) return marine;
+        }
+        return null;
     }
 
     public LocalDateTime getInitDateTime(){return initDateTime;}
@@ -56,8 +54,8 @@ public class CollectionHandler {
         marinesCollection.clear();
     }
 
-    public int generateNextId(){
-        int nextId = 1;
+    public Long generateNextId(){
+        Long nextId = Long.valueOf(1);
         for(SpaceMarine spaceMarine : marinesCollection){
             if (spaceMarine.getId() >= nextId){
                 nextId = spaceMarine.getId();

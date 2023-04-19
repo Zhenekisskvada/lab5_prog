@@ -1,6 +1,6 @@
 package commands;
 
-interface Command {
+public interface Command {
     public String getName();
 
     public String getDescription();

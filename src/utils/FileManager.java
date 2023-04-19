@@ -12,10 +12,6 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.*;
 
-/*public class FileManager {
-    private String filePath;
-    public FileManager(){this.filePath = System.in.toString();}
-}*/
 public class FileManager {
     private Gson gson = new Gson();
     private String nameFile;
