@@ -50,7 +50,7 @@ public class CollectionHandler {
     }
     public HashSet<SpaceMarine> getCollection(){return marinesCollection;}
 
-    public void clear(){
+    public void clearCollection(){
         marinesCollection.clear();
     }
 
@@ -62,6 +62,12 @@ public class CollectionHandler {
             }
         }
         return nextId+1;
+    }
+
+    public SpaceMarine getFirst() {
+        if (marinesCollection.isEmpty()) return null;
+        Iterator<SpaceMarine> i = marinesCollection.iterator();
+        return i.next();
     }
     public void saveCollection() {
         fileManager.writeFile(marinesCollection);

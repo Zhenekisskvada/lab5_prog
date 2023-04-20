@@ -25,7 +25,6 @@ public class SpaceMarine {
         this.chapter = chapter;
     }
 
-    public SpaceMarine(){}
     public Long getId() {
         return id;
     }
@@ -56,6 +55,10 @@ public class SpaceMarine {
     public void setMeleeWeapon(MeleeWeapon meleeWeapon){this.meleeWeapon = meleeWeapon;}
     public Chapter getChapter(){return chapter;}
     public void setChapter(Chapter chapter){this.chapter = chapter;}
+
+    public int compareTo(SpaceMarine marineObj) {
+        return id.compareTo(marineObj.getId());
+    }
 
     @Override
     public boolean equals(Object obj) {
