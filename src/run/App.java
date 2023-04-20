@@ -10,7 +10,7 @@ public class App {
     public static final String PS2 = "> ";
     public static void main(String[] args) {
         try (Scanner userScanner = new Scanner(System.in)) {
-            final String nameFile = "labaratoryWork";
+            final String nameFile = args[0];
             MarineAsker marineAsker = new MarineAsker(userScanner);
             FileManager fileManager = new FileManager(nameFile);
             CollectionHandler collectionHandler = new CollectionHandler(fileManager);

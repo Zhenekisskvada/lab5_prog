@@ -13,7 +13,8 @@ public class SpaceMarine {
     private MeleeWeapon meleeWeapon; //Поле не может быть null
     private Chapter chapter; //Поле не может быть null
 
-    public SpaceMarine(Long id, String name, Coordinates coordinates, LocalDateTime creationDate,Float health, float height, Weapon weaponType,
+    public SpaceMarine(Long id, String name, Coordinates coordinates,
+                       LocalDateTime creationDate,Float health, float height, Weapon weaponType,
             MeleeWeapon meleeWeapon,Chapter chapter) {
         this.id = id;
         this.name = name;
