@@ -21,8 +21,8 @@ public class FileManager {
     }
 
     public void writeFile(Collection<?> collection) {
-        if (System.getenv().get(nameFile) != null) {
-            try (FileWriter collectionFileWriter = new FileWriter(new File(System.getenv().get(nameFile)))) {
+        if (nameFile != null) {
+            try (FileWriter collectionFileWriter = new FileWriter(new File(nameFile)) {
                 collectionFileWriter.write(gson.toJson(collection));
                 System.out.println("Коллекция успешна сохранена в файл!");
             } catch (IOException exception) {
@@ -32,8 +32,8 @@ public class FileManager {
     }
 
     public HashSet<SpaceMarine> readFromFile() {
-        if (System.getenv().get(nameFile) != null) {
-            try (Scanner collectionFileScanner = new Scanner(new File(System.getenv().get(nameFile)))) {
+        if (nameFile != null) {
+            try (Scanner collectionFileScanner = new Scanner(new File(nameFile)) {
                 HashSet<SpaceMarine> collection;
                 Type collectionType = new TypeToken<HashSet<SpaceMarine>>() {
                 }.getType();
